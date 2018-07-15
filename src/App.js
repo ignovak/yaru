@@ -5,11 +5,26 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
+
   render() {
+    const tree = [];
+    const dict = {};
+    this.props.posts.forEach(_ => {
+      dict[_.id] = _;
+      if (!_.parentId) {
+        tree.push(_);
+      } else {
+        if (dict[_.parentId]) {
+          dict[_.parentId].children.push(_);
+        }
+      }
+    });
+    // TODO: will need another loop for orphan posts
+
     return (
-      <div className="App">
+      <div className="container">
         <ul className="list-unstyled">
-          {this.props.posts.map((_, i) => <PostCard key={i} data={_} />)}
+          {tree.map((_, i) => <PostCard key={i} data={_} />)}
         </ul>
       </div>
     );

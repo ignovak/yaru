@@ -19,6 +19,7 @@ class PostCard extends Component {
       parentId: this.props.data.id,
       avatar: 'https://pbs.twimg.com/profile_images/728303368871903232/kyFqCkcD_400x400.jpg',
       author: 'anonymous',
+      children: [],
       content: input.value,
       date: (new Date()).toISOString().replace('T', ' ').replace(/:[^:]+$/, ''),
       id: 'post_' + +new Date()
@@ -32,14 +33,18 @@ class PostCard extends Component {
 
     return (
 
-      <div className="card" id={this.props.data.id}>
+      <li className="card" id={this.props.data.id}>
         <div className="card-body">
-          <li className="media">
+          <div className="media">
             <img className="mr-3" src={this.props.data.avatar} alt={this.props.data.author} width="30" />
             <div className="media-body">
               <h5 className="mt-0">{this.props.data.author}</h5>
               <small className="text-muted">{this.props.data.date}</small>
               <p>{this.props.data.content}</p>
+
+              <ul className="list-unstyled">
+                {this.props.data.children.map((_, i) => <PostCard {...this.props} key={i} data={_} />)}
+              </ul>
 
               <Button bsSize="small" bsStyle="link" className="text-muted" onClick={() => this.setState({ open: !this.state.open })}>
                 Add comment
@@ -52,9 +57,9 @@ class PostCard extends Component {
               </Collapse>
 
             </div>
-          </li>
+          </div>
         </div>
-      </div>
+      </li>
 
     )
   }
