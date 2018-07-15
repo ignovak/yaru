@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Button, FormControl, Collapse } from 'react-bootstrap';
 import * as postActions from '../actions/postActions';
 
@@ -33,15 +34,20 @@ class PostCard extends Component {
 
     return (
 
-      <li className="card" id={this.props.data.id}>
+      <li className="card" id={'post_' + this.props.data.id}>
         <div className="card-body">
           <div className="media">
             <img className="mr-3" src={this.props.data.avatar} alt={this.props.data.author} width="30" />
             <div className="media-body">
-              <h5 className="mt-0">{this.props.data.author}</h5>
-              <small className="text-muted">{this.props.data.date}</small>
+              <span className="h5">{this.props.data.author}</span>
+              {' '}
+              at
+              {' '}
+              <Link to={`/posts/${this.props.data.id}`} className="small text-muted">{this.props.data.date}</Link>
               <p>{this.props.data.content}</p>
 
+              <Button bsSize="small" bsStyle="link">+1</Button>
+              <Button bsSize="small" bsStyle="link">-1</Button>
               <Button bsSize="small" bsStyle="link" className="text-muted" onClick={() => this.setState({ open: !this.state.open })}>
                 Add comment
               </Button>

@@ -1,21 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { render } from 'react-dom';
 import './index.css';
 import configureStore from './store';
 import * as postActions from './actions/postActions';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+
+import App from './components/App';
 
 import posts from './data';
 
 const store = configureStore();
 store.dispatch(postActions.loadPosts(posts));
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+render(
+  <App store={store} />,
   document.getElementById('root')
 );
 registerServiceWorker();
