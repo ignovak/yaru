@@ -14,8 +14,9 @@ class App extends Component {
       if (!_.parentId) {
         tree.push(_);
       } else {
-        if (dict[_.parentId]) {
-          dict[_.parentId].children.push(_);
+        const parent = dict[_.parentId];
+        if (parent && !parent.children.find(child => child.id === _.id)) {
+          parent.children.push(_);
         }
       }
     });

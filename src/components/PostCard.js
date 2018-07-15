@@ -42,10 +42,6 @@ class PostCard extends Component {
               <small className="text-muted">{this.props.data.date}</small>
               <p>{this.props.data.content}</p>
 
-              <ul className="list-unstyled">
-                {this.props.data.children.map((_, i) => <PostCard {...this.props} key={i} data={_} />)}
-              </ul>
-
               <Button bsSize="small" bsStyle="link" className="text-muted" onClick={() => this.setState({ open: !this.state.open })}>
                 Add comment
               </Button>
@@ -55,6 +51,10 @@ class PostCard extends Component {
                   <Button bsSize="small" bsStyle="primary" type="submit">Submit</Button>
                 </form>
               </Collapse>
+
+              <ul className="list-unstyled">
+                {this.props.data.children.map((_, i) => <PostCard {...this.props} key={i} data={_} />)}
+              </ul>
 
             </div>
           </div>
