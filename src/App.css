@@ -1,0 +1,4 @@
+/* Fix for bootstrap4 vs bootstrap3 */
+.collapse.in:not(.show) {
+  display: block;
+}

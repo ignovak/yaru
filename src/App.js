@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PostCard from './components/PostCard';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -15,4 +16,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(state => ({ posts: state.posts }))(App);
