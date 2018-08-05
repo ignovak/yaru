@@ -38,9 +38,9 @@ class PostCard extends Component {
 
     return (
 
-      <li className="card" id={'post_' + this.props.data.id}>
+      <li className="card border-0" id={'post_' + this.props.data.id}>
         {this.props.data.title ? <div className="card-header h4">{this.props.data.title}</div> : ''}
-        <div className="card-body">
+        <div className="card-body p-3">
           <div className="media">
             <img className="mr-3" src={this.props.data.avatar} alt={this.props.data.author} width="30" />
             <div className="media-body">
