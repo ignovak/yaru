@@ -7,10 +7,8 @@ import registerServiceWorker from './registerServiceWorker';
 
 import App from './components/App';
 
-import posts from './data';
-
 const store = configureStore();
-store.dispatch(postActions.loadPosts(posts));
+store.dispatch(postActions.fetchPosts());
 
 render(
   <App store={store} />,

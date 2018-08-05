@@ -1,6 +1,6 @@
 export default (state = [], action) => {
   switch (action.type) {
-    case 'LOAD_POSTS':
+    case 'FETCH_POSTS_SUCCESS':
       return [
         ...state,
         ...action.posts

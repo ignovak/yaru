@@ -11,6 +11,7 @@ class App extends Component {
     const post = dict[this.props.match.params.id];
     if (!post) {
       // TODO: render 404
+      return '';
     }
 
     recalculateDepth(post);
