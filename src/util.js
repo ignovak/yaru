@@ -18,3 +18,10 @@ export const buildPostTree = posts => {
     dict
   }
 };
+
+export const recalculateDepth = (post, depth = 0) => {
+  post.depth = depth;
+  post.children.forEach(_ => recalculateDepth(_, depth + 1));
+}
+
+export const flattenTree = tree => [tree].concat(...tree.children.map(flattenTree));

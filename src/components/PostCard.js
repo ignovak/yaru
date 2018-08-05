@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, FormControl, Collapse } from 'react-bootstrap';
 import * as postActions from '../actions/postActions';
+import { flattenTree } from '../util';
 
 class PostCard extends Component {
 
@@ -23,7 +24,7 @@ class PostCard extends Component {
       children: [],
       content: input.value,
       date: (new Date()).toISOString().replace('T', ' ').replace(/:[^:]+$/, ''),
-      id: 'post_' + +new Date()
+      id: +new Date()
     }
     this.props.dispatch(postActions.addPost(post));
     e.target.reset();
@@ -59,7 +60,13 @@ class PostCard extends Component {
               </Collapse>
 
               <ul className="list-unstyled">
-                {this.props.data.children.map((_, i) => <PostCard {...this.props} key={i} data={_} />)}
+                {
+                this.props.data.depth < 4
+                  ?
+                  this.props.data.children.map((_, i) => <PostCard {...this.props} key={i} data={_} />)
+                  :
+                  this.props.data.depth > 4 ? '' : flattenTree(this.props.data).slice(1).map((_, i) => <PostCard {...this.props} key={i} data={_} />)
+                }
               </ul>
 
             </div>

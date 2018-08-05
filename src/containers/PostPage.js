@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostCard from '../components/PostCard';
-import { buildPostTree } from '../util';
+import { buildPostTree, recalculateDepth } from '../util';
 
 class App extends Component {
 
@@ -12,6 +12,8 @@ class App extends Component {
     if (!post) {
       // TODO: render 404
     }
+
+    recalculateDepth(post);
 
     return (
       <PostCard data={post} />
