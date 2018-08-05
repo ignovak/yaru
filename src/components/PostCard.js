@@ -28,6 +28,8 @@ class PostCard extends Component {
       id: +new Date()
     }
     this.props.dispatch(postActions.addPost(post));
+    // TODO: this should be moved to the state
+    this.props.data.children.push(post);
     e.target.reset();
     this.setState({ open: false });
   }
