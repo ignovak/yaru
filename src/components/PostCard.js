@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Markdown from 'react-markdown';
 import { Button, FormControl, Collapse } from 'react-bootstrap';
 import * as postActions from '../actions/postActions';
 import { flattenTree } from '../util';
@@ -36,6 +37,7 @@ class PostCard extends Component {
     return (
 
       <li className="card" id={'post_' + this.props.data.id}>
+        {this.props.data.title ? <div className="card-header h4">{this.props.data.title}</div> : ''}
         <div className="card-body">
           <div className="media">
             <img className="mr-3" src={this.props.data.avatar} alt={this.props.data.author} width="30" />
@@ -45,7 +47,7 @@ class PostCard extends Component {
               at
               {' '}
               <Link to={`/posts/${this.props.data.id}`} className="small text-muted">{this.props.data.date}</Link>
-              <p>{this.props.data.content}</p>
+              <Markdown source={this.props.data.content} />
 
               <Button bsSize="small" bsStyle="link">+1</Button>
               <Button bsSize="small" bsStyle="link">-1</Button>
