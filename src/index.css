@@ -2,3 +2,11 @@
 .collapse.in:not(.show) {
   display: block;
 }
+
+.card .username {
+  display: inline-block;
+}
+
+.card .username::first-letter {
+  color: red;
+}

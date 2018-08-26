@@ -44,7 +44,7 @@ class PostCard extends Component {
           <div className="media">
             <img className="mr-3" src={this.props.data.avatar} alt={this.props.data.author} width="30" />
             <div className="media-body">
-              <span className="h5">{this.props.data.author}</span>
+              <div className="username h5">{this.props.data.author}</div>
               {' '}
               at
               {' '}
